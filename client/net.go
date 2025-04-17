@@ -34,12 +34,16 @@ func (rb *RequestBuilder) doRequest(verb string, reqURL string, reqBody interfac
 
 	var httpResp *http.Response
 	if mock != nil {
+		if mock.Err != nil {
+			result.Err = mock.Err
+			return result
+		} 
 		httpResp = &http.Response{
 			StatusCode: mock.RespHTTPCode,
 			Header:     mock.RespHeaders,
-			Err: 		mock.Err,
 			Body:       nopCloser{bytes.NewBufferString(mock.RespBody)},
 		}
+
 	} else {
 		client := rb.getClient()
 
