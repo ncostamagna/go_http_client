@@ -13,6 +13,7 @@ var mockMap = make(map[string]*Mock)
 type Mock struct {
 	URL          string
 	HTTPMethod   string
+	Err			 error
 	RespHTTPCode int
 	RespHeaders  http.Header
 	RespBody     string

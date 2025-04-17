@@ -37,6 +37,7 @@ func (rb *RequestBuilder) doRequest(verb string, reqURL string, reqBody interfac
 		httpResp = &http.Response{
 			StatusCode: mock.RespHTTPCode,
 			Header:     mock.RespHeaders,
+			Err: 		mock.Err,
 			Body:       nopCloser{bytes.NewBufferString(mock.RespBody)},
 		}
 	} else {
